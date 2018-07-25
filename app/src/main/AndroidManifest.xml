@@ -40,6 +40,8 @@
             android:label="Read Barcode"/>
         <activity android:name=".DeviceScanActivity"
             android:label="Ble Scan"/>
+        <activity android:name=".DeviceControlActivity"
+            android:label="Ble Control"/>
     </application>
 
 </manifest>

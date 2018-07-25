@@ -48,6 +48,9 @@
             android:name="com.google.android.gms.samples.vision.barcodereader.DeviceScanActivity"
             android:label="Ble Scan" />
         <activity
+            android:name="com.google.android.gms.samples.vision.barcodereader.DeviceControlActivity"
+            android:label="Ble Control" />
+        <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />

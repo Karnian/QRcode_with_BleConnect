@@ -40,9 +40,6 @@
                     android:inputType="textPersonName"
                     android:text="result_title" />
 
-                <!--웹으로 데이터를 전송하는 버튼이다-->
-
-
                 <Switch
                     android:id="@+id/switch_detect"
                     android:layout_width="65dp"

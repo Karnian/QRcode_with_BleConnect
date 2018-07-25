@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:2:1-45:12
+ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:2:1-47:12
 	package
 		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:3:5-66
 		INJECTED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml
@@ -40,7 +40,7 @@ ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManif
 	android:name
 		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:12:22-62
 application
-ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:14:5-43:19
+ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:14:5-45:19
 MERGED from [com.android.support:support-v4:24.2.0] C:\Users\Karnian\Desktop\MHE\barcode-reader\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-compat:24.2.0] C:\Users\Karnian\Desktop\MHE\barcode-reader\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-core-utils:24.2.0] C:\Users\Karnian\Desktop\MHE\barcode-reader\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\AndroidManifest.xml:25:5-20
@@ -210,6 +210,12 @@ ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManif
 		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:42:13-37
 	android:name
 		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:41:19-53
+activity#com.google.android.gms.samples.vision.barcodereader.DeviceControlActivity
+ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:43:9-44:42
+	android:label
+		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:44:13-40
+	android:name
+		ADDED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml:43:19-56
 uses-sdk
 INJECTED from C:\Users\Karnian\Desktop\MHE\barcode-reader\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:support-v4:24.2.0] C:\Users\Karnian\Desktop\MHE\barcode-reader\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\AndroidManifest.xml:21:5-23:54

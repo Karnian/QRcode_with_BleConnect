@@ -2,5 +2,13 @@
     {
         "merged": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v17\\activity_main.xml",
         "source": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\src\\main\\res\\layout-v17\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v17\\gatt_services_characteristics.xml",
+        "source": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\src\\main\\res\\layout-v17\\gatt_services_characteristics.xml"
+    },
+    {
+        "merged": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\layout-v17\\result_layout.xml",
+        "source": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\src\\main\\res\\layout-v17\\result_layout.xml"
     }
 ]

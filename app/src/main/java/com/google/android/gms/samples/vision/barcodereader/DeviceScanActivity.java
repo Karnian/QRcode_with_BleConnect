@@ -34,17 +34,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 /**
  * Activity for scanning and displaying available Bluetooth LE devices.
@@ -56,7 +46,7 @@ public class DeviceScanActivity extends Activity {
 
     public BluetoothDevice mDevice;
     public String deviceAddress;
-    public StartActivity mStartActivity;
+//    public StartActivity mStartActivity;
 
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
@@ -168,24 +158,18 @@ public class DeviceScanActivity extends Activity {
                             mBluetoothAdapter.stopLeScan(mLeScanCallback);
                             mScanning = false;
                         }
+                        final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+//                    mStartActivity = new StartActivity();
+//                    mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
+                        Log.d("DeviceScan : ", "startactivity // " + device.getAddress() + " // " + device.getName());
+                        startActivity(intent1);
                     }
-                    mStartActivity = new StartActivity();
-                    mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
                     return;
                 }
             });
         }
     };
 
-    class StartActivity extends AsyncTask {
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
-            intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, deviceAddress);
-            intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, mDevice.getName());
-            startActivity(intent1);
-            return null;
-        }
-    }
 }
