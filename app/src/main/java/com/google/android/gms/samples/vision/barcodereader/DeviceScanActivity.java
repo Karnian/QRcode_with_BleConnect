@@ -46,7 +46,7 @@ public class DeviceScanActivity extends Activity {
 
     public BluetoothDevice mDevice;
     public String deviceAddress;
-//    public StartActivity mStartActivity;
+    public StartActivity mStartActivity;
 
     private static final int REQUEST_ENABLE_BT = 1;
     // Stops scanning after 10 seconds.
@@ -158,18 +158,29 @@ public class DeviceScanActivity extends Activity {
                             mBluetoothAdapter.stopLeScan(mLeScanCallback);
                             mScanning = false;
                         }
-                        final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
-                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-//                    mStartActivity = new StartActivity();
-//                    mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
-                        Log.d("DeviceScan : ", "startactivity // " + device.getAddress() + " // " + device.getName());
-                        startActivity(intent1);
+//                        final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+                        mStartActivity = new StartActivity();
+                        mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
+//                        Log.d("DeviceScan : ", "startactivity // " + device.getAddress() + " // " + device.getName());
+//                        startActivity(intent1);
                     }
                     return;
                 }
             });
         }
     };
+    class StartActivity extends AsyncTask {
 
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+            intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, mDevice.getAddress());
+            intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, mDevice.getName());
+            Log.d("DeviceScan : ", "startactivity // " + mDevice.getAddress() + " // " + mDevice.getName());
+            startActivity(intent1);
+            return null;
+        }
+    }
 }
