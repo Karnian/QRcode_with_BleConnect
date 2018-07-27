@@ -17,10 +17,9 @@
 package com.google.android.gms.samples.vision.barcodereader;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
@@ -137,6 +136,29 @@ public class DeviceScanActivity extends Activity {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
+    public void checkAddress(BluetoothDevice device) {
+        if(device.getAddress().equals(deviceAddress)) {
+//                        final Intent intent = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+//                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+//                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+            mDevice = device;
+            Toast.makeText(getApplicationContext(), "FOUND  //  " + device.getAddress(), Toast.LENGTH_LONG).show();
+            if (mScanning) {
+                mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                mScanning = false;
+            }
+//                        final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
+//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
+//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
+            mStartActivity = new StartActivity();
+            mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
+//                        Log.d("DeviceScan : ", "startactivity // " + device.getAddress() + " // " + device.getName());
+//                        startActivity(intent1);
+        }
+    }
+
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback =
             new BluetoothAdapter.LeScanCallback() {
@@ -148,29 +170,12 @@ public class DeviceScanActivity extends Activity {
                 @Override
                 public void run() {
                     Log.d("Address", device.getAddress());
-                    if(device.getAddress().equals(deviceAddress)) {
-//                        final Intent intent = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
-//                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-//                        intent.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-                        mDevice = device;
-                        Toast.makeText(getApplicationContext(), "FOUND  //  " + device.getAddress(), Toast.LENGTH_LONG).show();
-                        if (mScanning) {
-                            mBluetoothAdapter.stopLeScan(mLeScanCallback);
-                            mScanning = false;
-                        }
-//                        final Intent intent1 = new Intent(DeviceScanActivity.this, DeviceControlActivity.class);
-//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-//                        intent1.putExtra(DeviceControlActivity.EXTRAS_DEVICE_NAME, device.getName());
-                        mStartActivity = new StartActivity();
-                        mStartActivity.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 0);
-//                        Log.d("DeviceScan : ", "startactivity // " + device.getAddress() + " // " + device.getName());
-//                        startActivity(intent1);
-                    }
-                    return;
+                    checkAddress(device);
                 }
             });
         }
     };
+
     class StartActivity extends AsyncTask {
 
         @Override

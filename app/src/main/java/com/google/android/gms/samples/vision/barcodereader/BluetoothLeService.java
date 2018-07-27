@@ -16,6 +16,7 @@
 
 package com.google.android.gms.samples.vision.barcodereader;
 
+
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -32,7 +33,12 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
+import com.google.android.gms.samples.vision.barcodereader.SampleGattAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,7 +54,7 @@ import java.util.UUID;
 public class BluetoothLeService extends Service {
     private final static String TAG = BluetoothLeService.class.getSimpleName();
 
-    protected Map<BluetoothDevice, DeviceControlActivity> mBleConnections = new HashMap<>();
+    protected Map<BluetoothDevice, com.google.android.gms.samples.vision.barcodereader.DeviceControlActivity> mBleConnections = new HashMap<>();
     protected ArrayList<BluetoothGatt> mGattList = new ArrayList<>();
     protected ArrayList<BluetoothGattCallback> mGattCallbackList = new ArrayList<>();
     protected ArrayList<BluetoothDevice> mDevices = new ArrayList<>();
@@ -63,7 +69,7 @@ public class BluetoothLeService extends Service {
     public static final UUID CLASSIFICATION_CHARACTERISTIC                                      = new UUID(0xEF68040B9B354933L, 0x9B1052FFA9740042L);
     public static final UUID FEATURE_VECTOR_CHARACTERISTIC                                      = new UUID(0xEF68040C9B354933L, 0x9B1052FFA9740042L);
     public static final UUID THINGY_MOTION_CONFIGURATION_CHARACTERISTIC                         = new UUID(0xEF6804019B354933L, 0x9B1052FFA9740042L);
-    public static final UUID CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR                     = new UUID(0x0000290200001000L, 0x800000805f9B34FBL);
+
 
     public static final String TEMPERATURE_NOTIFICATION                                         = "TEMPERATURE_NOTIFICATION_";
     public static final String HUMIDITY_NOTIFICATION                                            = "HUMIDITY_NOTIFICATION_";
@@ -342,7 +348,7 @@ public class BluetoothLeService extends Service {
         // parameter to false.
         mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
 
-        mBleConnections.put(device, new DeviceControlActivity());
+        mBleConnections.put(device, new com.google.android.gms.samples.vision.barcodereader.DeviceControlActivity());
         if (!mDevices.contains(device)) {
             mDevices.add(device);
             mGattList.add(mBluetoothGatt);
@@ -419,22 +425,22 @@ public class BluetoothLeService extends Service {
         UUID charUuid = characteristic.getUuid();
         if(TEMPERATURE_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Temperature initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         } else if(HUMIDITY_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Humidity initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         } else if(CLASSIFICATION_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Classification initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         } else if(FEATURE_VECTOR_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "FeatureVector initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             mBluetoothGatt.writeDescriptor(descriptor);
         }
@@ -452,22 +458,22 @@ public class BluetoothLeService extends Service {
         UUID charUuid = characteristic.getUuid();
         if(TEMPERATURE_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Temperature initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             bleGatt.writeDescriptor(descriptor);
         } else if(HUMIDITY_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Humidity initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             bleGatt.writeDescriptor(descriptor);
         } else if(CLASSIFICATION_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "Classification initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             bleGatt.writeDescriptor(descriptor);
         } else if(FEATURE_VECTOR_CHARACTERISTIC.equals(charUuid)) {
             Log.d(TAG, "FeatureVector initialized");
-            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
+            BluetoothGattDescriptor descriptor = characteristic.getDescriptor(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIGURATOIN_DESCRIPTOR);
             descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
             bleGatt.writeDescriptor(descriptor);
         }
@@ -485,4 +491,16 @@ public class BluetoothLeService extends Service {
 
         return mBluetoothGatt.getServices();
     }
+
+    /*
+    public void changeCharacteristic(BluetoothDevice device, boolean enable, BluetoothGatt bleGatt) {
+        final BluetoothGattService cPMEService = bleGatt.getService(SECURE_PME_SERVICE);
+        if (cPMEService != null) {
+            BluetoothGattCharacteristic rClassificationCharacteristic = cPMEService.getCharacteristic(CLASSIFICATION_CHARACTERISTIC);
+            setCharacteristicNotification(rClassificationCharacteristic, enable);
+            mGattCallback.onCharacteristicChanged(bleGatt, rClassificationCharacteristic);
+            Log.d(TAG, device.getAddress() + "// " + rClassificationCharacteristic + enable);
+        }
+    }
+    */
 }

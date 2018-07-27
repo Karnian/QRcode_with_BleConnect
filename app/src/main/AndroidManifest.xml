@@ -26,6 +26,10 @@
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
+        <service
+            android:name=".BluetoothLeService"
+            android:enabled="true" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
