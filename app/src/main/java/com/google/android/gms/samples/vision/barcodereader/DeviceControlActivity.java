@@ -31,6 +31,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.media.Image;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -95,6 +96,9 @@ public class DeviceControlActivity extends ListActivity {
     public StartActivity mStartActivity;
 
     public ImageView result_img;
+    private MediaPlayer mp;
+
+    private int num = 0;
 
     private class ListViewAdapter extends BaseAdapter {
         private ArrayList<BluetoothLeService> mListService;
@@ -328,6 +332,7 @@ public class DeviceControlActivity extends ListActivity {
         final Intent intent = getIntent();
         mDeviceName = new String(intent.getStringExtra(EXTRAS_DEVICE_NAME));
         mDeviceAddress = new String(intent.getStringExtra(EXTRAS_DEVICE_ADDRESS));
+        mp = MediaPlayer.create(DeviceControlActivity.this, R.raw.daehanminkook);
 
         /*
         // Sets up UI references.
@@ -470,20 +475,16 @@ public class DeviceControlActivity extends ListActivity {
     public void MotionChangeEvent(String status1, String status2, String status3, String status4) {
         Log.d("MOT received",  mDeviceAddress + "//////" + status1 + status2 + status3 + status4);
 
-        if(status3 == null)
-            return;
-        if(status3.equals("0"))
-            result_img.setImageResource(R.drawable.pme_unknown);
-        else if(status3.equals("1"))
-            result_img.setImageResource(R.drawable.pme_sleep);
-        else if(status3.equals("2"))
-            result_img.setImageResource(R.drawable.pme_study);
-        else if(status3.equals("3"))
-            result_img.setImageResource(R.drawable.pme_phone);
-        else if(status3.equals("4"))
-            result_img.setImageResource(R.drawable.pme_eat);
-        else if(status3.equals("5"))
-            result_img.setImageResource(R.drawable.pme_walk);
+        if(status3.equals("6") && !mp.isPlaying()) {
+            num++;
+            result_img.setImageResource(R.drawable.daehanminkuk);
+            if(mp.isPlaying())
+                num = 0;
+            if(num > 3  && !mp.isPlaying()) {
+                num = 0;
+                mp.start();
+            }
+        }
     }
 
     class StartActivity extends AsyncTask {
