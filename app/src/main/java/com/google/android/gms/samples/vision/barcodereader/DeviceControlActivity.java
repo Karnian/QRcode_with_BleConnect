@@ -97,6 +97,7 @@ public class DeviceControlActivity extends ListActivity {
 
     public ImageView result_img;
     private MediaPlayer mp;
+    private MediaPlayer mp1;
 
     private int num = 0;
 
@@ -333,6 +334,7 @@ public class DeviceControlActivity extends ListActivity {
         mDeviceName = new String(intent.getStringExtra(EXTRAS_DEVICE_NAME));
         mDeviceAddress = new String(intent.getStringExtra(EXTRAS_DEVICE_ADDRESS));
         mp = MediaPlayer.create(DeviceControlActivity.this, R.raw.daehanminkook);
+        mp1 = MediaPlayer.create(DeviceControlActivity.this, R.raw.clap);
 
         /*
         // Sets up UI references.
@@ -484,6 +486,8 @@ public class DeviceControlActivity extends ListActivity {
                 num = 0;
                 mp.start();
             }
+        } else if(status3.equals("3") && !mp1.isPlaying()) {
+            mp1.start();
         }
     }
 

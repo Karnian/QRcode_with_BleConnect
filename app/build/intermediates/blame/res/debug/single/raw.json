@@ -2,5 +2,9 @@
     {
         "merged": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\daehanminkook.mp3",
         "source": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\src\\main\\res\\raw\\daehanminkook.mp3"
+    },
+    {
+        "merged": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\build\\intermediates\\res\\merged\\debug\\raw\\clap.mp3",
+        "source": "C:\\Users\\Karnian\\Desktop\\MHE\\barcode-reader\\app\\src\\main\\res\\raw\\clap.mp3"
     }
 ]
