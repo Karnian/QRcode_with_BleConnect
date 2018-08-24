@@ -1,0 +1,3 @@
+[submodule "qr_application"]
+	path = qr_application
+	url = https://Karnian@bitbucket.org/Sixth_finger/qr_application.git
